@@ -3,60 +3,53 @@ import "./Quiz.css";
 import { data } from "../assets/data";
 
 function Quiz() {
-  const [index, setIndex] = useState(0); // Start at the first question
+  const [index, setIndex] = useState(0);
   const [question, setQuestion] = useState(data[index]);
   const [lock, setLock] = useState(false);
   const [result, setResult] = useState(false);
-  const [score,setScore] = useState(0);
+  const [score, setScore] = useState(0);
 
-  let Option1 = useRef(null);
-  let Option2 = useRef(null);
-  let Option3 = useRef(null);
-  let Option4 = useRef(null);
+  const Option1 = useRef(null);
+  const Option2 = useRef(null);
+  const Option3 = useRef(null);
+  const Option4 = useRef(null);
 
-  let option_array = [Option1, Option2, Option3, Option4];
+  const option_array = [Option1, Option2, Option3, Option4];
 
-  // Update question when index changes
   useEffect(() => {
     setQuestion(data[index]);
-    setLock(false); // Reset lock when moving to a new question
+    setLock(false);
   }, [index]);
 
   const checkAns = (e, answered) => {
     if (!lock) {
       if (question.ans === answered) {
         e.target.classList.add("correct");
-        setScore(score+1);
-        setLock(true);
+        setScore(score + 1);
       } else {
         e.target.classList.add("wrong");
-        setLock(true);
         option_array[question.ans - 1].current.classList.add("correct");
       }
+      setLock(true);
     }
   };
-  
-  const resetclick = () => {
-    setIndex(0);  // Reset to the first question
-    setScore(0);  // Reset the score
-    setLock(false);  // Unlock the options
-    setResult(false);  // Reset the result state
+
+  const resetQuiz = () => {
+    setIndex(0);
+    setScore(0);
+    setLock(false);
+    setResult(false);
   };
 
-  const clickHandler = () => {
+  const nextQuestion = () => {
     if (index === data.length - 1) {
       setResult(true);
-      return 0;
+    } else if (lock) {
+      setIndex(index + 1);
+      option_array.forEach((option) => {
+        option.current.classList.remove("wrong", "correct");
+      });
     }
-    if (index < data.length - 1 && lock === true) {
-      setIndex(index + 1); // Go to the next question
-    }
-
-    option_array.map((option) => {
-      option.current.classList.remove("wrong");
-      option.current.classList.remove("correct");
-      return null;
-    });
   };
 
   return (
@@ -65,8 +58,10 @@ function Quiz() {
       <hr />
       {result ? (
         <>
-        <h2>You Scored {score} out of {data.length}</h2>
-        <button onClick={resetclick}>Reset</button>
+          <h2>
+            🎉 You Scored {score} out of {data.length}
+          </h2>
+          <button onClick={resetQuiz}>Restart Quiz</button>
         </>
       ) : (
         <>
@@ -87,9 +82,11 @@ function Quiz() {
               {question.option4}
             </li>
           </ul>
-          <button onClick={clickHandler}>Next</button>
+          <button onClick={nextQuestion}>
+            {index === data.length - 1 ? "See Result" : "Next"}
+          </button>
           <div className="index">
-            {index + 1} of {data.length} questions
+            Question {index + 1} of {data.length}
           </div>
         </>
       )}

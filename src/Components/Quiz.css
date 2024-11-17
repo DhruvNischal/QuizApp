@@ -1,66 +1,116 @@
-
-.container{
+.container {
     margin: auto;
-    width: 640px;
-    background: white;
-    margin-top: 150px;
-    color: #262626;
+    width: 90%;
+    max-width: 600px;
+    background: #fff;
+    margin-top: 20px;
+    color: #333;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    border-radius: 10px;
-    padding: 40px 50px;
-}
-.container hr
-{
+    border-radius: 15px;
+    padding: 30px 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .container hr {
     height: 2px;
     border: none;
-    background-color: #707070;
-}
-
-.container h2
-{
-    font-size: 27px;
-    font-weight: 500;
-}
-.container ul li
-{
+    background-color: #e0e0e0;
+  }
+  
+  .container h1 {
+    font-size: 30px;
+    color: #6a11cb;
+    text-align: center;
+  }
+  
+  .container h2 {
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .container ul li {
     display: flex;
     align-items: center;
-    height: 70px;
+    height: 60px;
     padding-left: 15px;
-    border: 1px solid #686868;
+    border: 2px solid #cfcfcf;
     border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.container button
-{
-    margin: auto;
-    width: 250px;
-    height: 65px;
-    background: #553f9a;
-    font-size: 25px;
-    font-weight: 500px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.container .index
-{
-    margin: auto;
+    margin-bottom: 15px;
     font-size: 18px;
-}
-
-.container .correct
-{
-    background :#dffff3;
-    border-color: #00d397;
-}
-.container .wrong
-{
-    background :#f8e3e3;
-    border-color: #ff4a4a;
-}
+    cursor: pointer;
+    background: #f9f9f9;
+    transition: all 0.3s ease;
+  }
+  
+  .container ul li:hover {
+    background: #f3f1fd;
+    border-color: #6a11cb;
+  }
+  
+  .container button {
+    margin: auto;
+    width: 70%;
+    max-width: 200px;
+    height: 50px;
+    background: #6a11cb;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .container button:hover {
+    background: #4a0dab;
+  }
+  
+  .container .index {
+    margin: auto;
+    font-size: 16px;
+    text-align: center;
+    color: #666;
+  }
+  
+  .container .correct {
+    background: #d4ffe4;
+    border-color: #4caf50;
+  }
+  
+  .container .wrong {
+    background: #ffe4e4;
+    border-color: #f44336;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
+    }
+  
+    .container h1 {
+      font-size: 26px;
+    }
+  
+    .container h2 {
+      font-size: 20px;
+    }
+  
+    .container ul li {
+      font-size: 16px;
+    }
+  
+    .container button {
+      width: 90%;
+      max-width: 100%;
+    }
+  }
+  
